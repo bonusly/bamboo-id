@@ -1,15 +1,13 @@
 # BambooId
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bambooId`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Makes connecting to BambooHR with OpenID easier.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bambooId'
+gem 'bamboo-id'
 ```
 
 And then execute:
@@ -18,11 +16,34 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install bambooId
+    $ gem install bamboo-id
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+`Bamboo::Configuration.redirect_url` must be set.
+
+The following environment variables are also required:
+- `BAMBOO_APPLICATION_KEY`
+- `BAMBOO_CLIENT_ID`
+- `BAMBOO_CLIENT_SECRET`
+
+### Authorizing
+
+To get the initial authorization URL, use `BambooId::Urls::AuthUrl.new(subdomain).to_s`
+
+In the callback controller, you can use `BambooId::ApiKeyFetcher` to get an API key
+using the code passed to you like so:
+
+```ruby
+::BambooId::ApiKeyFetcher.new(
+  code: params[:code],
+  integration: current_company.user_management_integration
+).fetch
+```
+
+This will either return an api key or `false` with an `error` attribute set.
 
 ## Development
 
@@ -32,7 +53,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bambooId. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bonusly/bamboo-id. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

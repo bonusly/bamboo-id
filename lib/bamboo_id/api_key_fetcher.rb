@@ -2,10 +2,10 @@ module BambooId
   class ApiKeyFetcher
     attr_reader :error
 
-    def initialize(code:, integration:)
-      self.code        = code
-      self.integration = integration
-      self.error       = nil
+    def initialize(code:, subdomain:)
+      self.code      = code
+      self.subdomain = subdomain
+      self.error     = nil
     end
 
     def fetch
@@ -19,13 +19,13 @@ module BambooId
         return false
       end
 
-      integration.set(api_key: api_key_request.key)
+      api_key_request.key
     end
 
 
     private
 
-    attr_accessor :code, :integration
+    attr_accessor :code, :subdomain
     attr_writer :error
 
     def access_token_request
@@ -40,10 +40,6 @@ module BambooId
         id_token: access_token_request.id_token,
         subdomain: subdomain
       )
-    end
-
-    def subdomain
-      integration.subdomain
     end
   end
 end

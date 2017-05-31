@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "bambooId"
+require "bamboo_id"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -9,3 +9,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+BambooId::Configuration.redirect_url = 'http://localhost:3000/company/integrations/bamboo/authorization_callback'

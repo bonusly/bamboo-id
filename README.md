@@ -7,7 +7,7 @@ Makes connecting to BambooHR with OpenID easier.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bamboo-id'
+gem 'bamboo-id', require: 'bamboo_id'
 ```
 
 And then execute:

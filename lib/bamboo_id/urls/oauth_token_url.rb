@@ -1,3 +1,6 @@
+require_relative 'bamboo_url.rb'
+require_relative 'base_oauth_token_url.rb'
+
 module BambooId
   module Urls
     class OauthTokenUrl

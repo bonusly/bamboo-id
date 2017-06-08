@@ -1,3 +1,5 @@
+require_relative 'basic_request_handling.rb'
+
 module BambooId
   module Requests
     class ApiKeyRequest

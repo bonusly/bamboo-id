@@ -11,7 +11,13 @@ module BambooId
       private
 
       def response
-        @response ||= OpenStruct.new(self.class.post(url.to_s, body: url.params, headers: headers))
+        @response ||= OpenStruct.new(http_response)
+      rescue NoMethodError, JSON::ParserError
+        OpenStruct.new(error: 'Invalid response from Bamboo. Please try again.')
+      end
+
+      def http_response
+        @http_response ||= self.class.post(url.to_s, body: url.params, headers: headers)
       end
 
       def headers

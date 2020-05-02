@@ -60,3 +60,10 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/bonusl
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+## About Bonusly
+
+![Bonusly Logo](https://bonusly-files.s3.amazonaws.com/bonusly-logo.png?small)
+
+Bonusly is the fun and easy way to engage all of your employees and improve retention and productivity at every level of your organization.
+
+Check out [our product](https://bonus.ly) or [our engineering blog](https://engineering.bonus.ly).

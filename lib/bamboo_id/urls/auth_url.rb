@@ -13,13 +13,14 @@ module BambooId
       include BambooUrl
       include BaseAuthUrl
 
-      def initialize(subdomain)
+      def initialize(subdomain, state = nil)
         self.subdomain = subdomain
+        self.state = state
       end
 
       private
 
-      attr_accessor :subdomain
+      attr_accessor :subdomain, :state
 
       def additional_params
         {
@@ -44,7 +45,7 @@ module BambooId
       end
 
       def state_code
-        StateCode.new(subdomain).to_s
+        state || StateCode.new(subdomain).to_s
       end
     end
   end

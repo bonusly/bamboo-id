@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### Configuration
 
-`Bamboo::Configuration.redirect_url` must be set.
+`BambooId::Configuration.redirect_url` must be set.
 
 The following environment variables are also required:
 - `BAMBOO_APPLICATION_KEY`
@@ -33,13 +33,20 @@ The following environment variables are also required:
 
 To get the initial authorization URL, use `BambooId::Urls::AuthUrl.new(subdomain).to_s`
 
+You can also pass an optional custom `state` attribute to this URL like this:
+
+```ruby
+state = "my_custom_state"
+BambooId::Urls::AuthUrl.new(subdomain, state).to_s
+```
+
 In the callback controller, you can use `BambooId::ApiKeyFetcher` to get an API key
 using the code passed to you like so:
 
 ```ruby
 ::BambooId::ApiKeyFetcher.new(
   code: params[:code],
-  integration: current_company.user_management_integration
+  subdomain: subdomain,
 ).fetch
 ```
 
